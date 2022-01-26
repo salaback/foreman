@@ -1,0 +1,83 @@
+<?php
+
+namespace {{ baseNamespace }}\Http\Controllers{{ namespace.leadingBackSlash }};
+
+use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Pipeline;
+use Intellicoreltd\Headlessbps\Filters\OwnedByUser;
+use {{ baseNamespace }}\Models\{{ namespace.trailingBackSlash }}{{ model.studly }};
+
+class AddressController extends Controller
+{
+
+    /**
+     * Return an array of {{ model.studly.plural }}
+     *
+     * @return array
+     */
+    public function index()
+    {
+        ${{ model.camel.plural }} = app(Pipeline::class)
+            ->send(Address::query())
+            ->through(config('{{module}}.filters.index'))
+            ->thenReturn()
+            ->get();
+
+        return ${{ model.camel.plural }};
+    }
+
+    /**
+     * Return an instance of {{ model.studly }}
+     *
+     * @param {{ model.studly }} ${{ model.camel }}
+     * @return {{ model.studly }}
+     */
+    public function show({{ model.studly }} ${{ model.camel }})
+    {
+        return ${{ model.camel }};
+    }
+
+    /**
+     * Store an instance of {{ model.studly }}
+     *
+     * @param {{ model.studly }} ${{ model.camel }}
+     * @return {{ model.studly }}
+     */
+    public function store(Request $request)
+    {
+        ${{ model.camel }} = {{ model.studly }}::create($request->all());
+
+        return ${{ model.camel }};
+    }
+
+    /**
+     * Update an instance of {{ model.studly }}
+     *
+     * @param {{ model.studly }} ${{ model.camel }}
+     * @return {{ model.studly }}
+     */
+    public function update({{ model.studly }} ${{ model.camel }}, Request $request)
+    {
+
+        ${{ model.camel }}->update($request->all());
+
+        ${{ model.camel }}->fresh();
+
+        return ${{ model.camel }};
+    }
+
+    /**
+     * Delete an instance of {{ model.studly }}
+     *
+     * @param {{ model.studly }} ${{ model.camel }}
+     * @return Response
+     */
+    public function destroy({{ model.studly }} ${{ model.camel }})
+    {
+
+        ${{ model.camel }}->delete();
+
+        return new Response('', Response::HTTP_OK);
+    }
+}

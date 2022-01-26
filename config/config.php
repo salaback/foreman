@@ -1,5 +1,5 @@
 <?php
 
 return [
-    "base-namespace" => 'Intellicoreltd\Package'
+    "base-namespace" => 'Intellicoreltd\Package',
 ];
