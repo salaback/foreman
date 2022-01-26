@@ -4,6 +4,7 @@ namespace Intellicoreltd\Generators;
 
 use Illuminate\Support\ServiceProvider;
 use Intellicoreltd\Generators\Console\Controller;
+use Intellicoreltd\Generators\Console\Migration;
 use Intellicoreltd\Generators\Console\Model;
 
 class GeneratorsServiceProvider extends ServiceProvider
@@ -22,7 +23,8 @@ class GeneratorsServiceProvider extends ServiceProvider
     {
         $this->commands([
             Model::class,
-            Controller::class
+            Controller::class,
+            Migration::class
         ]);
     }
 }
