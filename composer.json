@@ -1,0 +1,36 @@
+{
+    "name": "intellicoreltd/genderators",
+    "description": "Generator utility for HeadlessBPS",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Sean Alaback",
+            "email": "sean.alaback@intellicore.co.uk"
+        }
+    ],
+    "require": {
+        "php": "8.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.24",
+        "phpunit/phpunit": "9.5.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Intellicoreltd\\Generators\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Intellicoreltd\\Generators\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Intellicoreltd\\Generators\\GeneratorsServiceProvider"
+            ]
+        }
+    }
+}
