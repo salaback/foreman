@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Artisan;
 use Intellicoreltd\Generators\Facades\Generate;
 use Intellicoreltd\Generators\Tests\TestCase;
 
-class ControllerTest extends TestCase
+class RoutesTest extends TestCase
 {
     public function test_normal()
     {
-        Generate::shouldReceive('controller')
-            ->with(base_path() . '/src/Http/Controllers/Test/Place/TestController.php', 'Test', 'Test\Place', 'test')
+        Generate::shouldReceive('route')
+            ->with(base_path() . '/routes/api.php', 'Test', 'Test\Place', 'test')
             ->once();
 
-        Artisan::call('generate:controller', [
+        Artisan::call('generate:route', [
             'model' => 'Test',
             '-N' => 'Test\Place',
             '-M' => 'test'

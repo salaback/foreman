@@ -56,6 +56,7 @@ class MigrationGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
         Generate::model($location, $model, $namespace);

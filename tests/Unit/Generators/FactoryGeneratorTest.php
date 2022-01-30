@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Intellicoreltd\Generators\Facades\Generate;
 use Intellicoreltd\Generators\Traits\InteractsWithFilesTrait;
 
-class ModelGeneratorTest extends TestCase
+class FactoryGeneratorTest extends TestCase
 {
     use WithFaker;
     use InteractsWithFilesTrait;
@@ -18,9 +18,10 @@ class ModelGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Generate::factory($location, $model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -29,23 +30,19 @@ class ModelGeneratorTest extends TestCase
 
     public function test_with2LevelNamespace()
     {
-        $model = Str::studly($this->faker->word);
+        $model = 'Test';
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
         config(['generators' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Generate::factory($location, $model, $namespace);
 
         $this->assertStringContainsString(
-            "namespace Intellicoreltd\Package\Test\Test;",
-            $this->openFile($location)
-        );
-
-        $this->assertStringContainsString(
-            "use Intellicoreltd\Package\Database\Factories\\${model}Factory;",
+            "namespace Intellicoreltd\Package\Database\Factories\Test\Test;",
             $this->openFile($location)
         );
 
@@ -54,21 +51,22 @@ class ModelGeneratorTest extends TestCase
 
     public function test_withModelName()
     {
-        $model = Str::studly($this->faker->word);
+        $model = "Test";
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Generate::factory($location, $model, $namespace);
 
         $this->assertStringContainsString(
-            "class ${model} extends Model",
+            "class TestFactory extends Factory",
             $this->openFile($location)
         );
 
         $this->assertStringContainsString(
-            "${model}Factory",
+            "use Intellicoreltd\Package\Models\Test\Test\Test;",
             $this->openFile($location)
         );
 
@@ -81,10 +79,9 @@ class ModelGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
-        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Generate::factory($location, $model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

@@ -1,0 +1,11 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use {{ baseNamespace }}\Http\Controllers{{ namespace.leadingBackSlash }}\{{ model.studly.singular }}Controller;
+
+Route::prefix('api/v1/{{ module }}')->middleware(['bindings'])->group(function() {
+    Route::apiResources([
+        /* Resource Controllers */
+        '/{{ model.singular.kebab }}' => {{ model.studly.singular }}Controller::class,
+    ]);
+});

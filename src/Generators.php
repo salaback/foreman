@@ -2,14 +2,14 @@
 
 namespace Intellicoreltd\Generators;
 
-use Intellicoreltd\Generators\Contracts\GeneratorsContract;
 use Intellicoreltd\Generators\Generators\ControllerGenerator;
+use Intellicoreltd\Generators\Generators\FactoryGenerator;
 use Intellicoreltd\Generators\Generators\MigrationGenerator;
 use Intellicoreltd\Generators\Generators\ModelGenerator;
+use Intellicoreltd\Generators\Generators\RouteGenerator;
 
 
-
-class Generators implements GeneratorsContract
+class Generators
 {
     /**
      * @param string $location
@@ -41,6 +41,28 @@ class Generators implements GeneratorsContract
     public function migration(string $location, string $model): void
     {
         $generator = new MigrationGenerator($location, $model);
+        $generator->execute();
+    }
+
+    /**
+     * @param string $location
+     * @param string $model
+     */
+    public function factory(string $location, string $model, string $namespace): void
+    {
+        $generator = new FactoryGenerator($location, $model, $namespace);
+        $generator->execute();
+    }
+
+    /**
+     * @param string $location
+     * @param string $model
+     * @param string $namespace
+     * @param $module
+     */
+    public function route(string $location, string $model, string $namespace, string $module): void
+    {
+        $generator = new RouteGenerator($location, $model, $namespace, $module);
         $generator->execute();
     }
 }

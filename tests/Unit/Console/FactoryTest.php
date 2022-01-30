@@ -6,18 +6,17 @@ use Illuminate\Support\Facades\Artisan;
 use Intellicoreltd\Generators\Facades\Generate;
 use Intellicoreltd\Generators\Tests\TestCase;
 
-class ControllerTest extends TestCase
+class FactoryTest extends TestCase
 {
     public function test_normal()
     {
-        Generate::shouldReceive('controller')
-            ->with(base_path() . '/src/Http/Controllers/Test/Place/TestController.php', 'Test', 'Test\Place', 'test')
+        Generate::shouldReceive('factory')
+            ->with(base_path() . '/database/factories/Test/Place/TestFactory.php', 'Test', 'Test\Place')
             ->once();
 
-        Artisan::call('generate:controller', [
+        Artisan::call('generate:factory', [
             'model' => 'Test',
-            '-N' => 'Test\Place',
-            '-M' => 'test'
+            '-N' => 'Test\Place'
         ]);
     }
 }
