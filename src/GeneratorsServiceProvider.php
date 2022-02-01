@@ -4,6 +4,7 @@ namespace Intellicoreltd\Generators;
 
 use Illuminate\Support\ServiceProvider;
 use Intellicoreltd\Generators\Console\Controller;
+use Intellicoreltd\Generators\Console\Entity;
 use Intellicoreltd\Generators\Console\Factory;
 use Intellicoreltd\Generators\Console\Migration;
 use Intellicoreltd\Generators\Console\Model;
@@ -33,7 +34,8 @@ class GeneratorsServiceProvider extends ServiceProvider
             Factory::class,
             Route::class,
             Requests::class,
-            Resource::class
+            Resource::class,
+            Entity::class
         ]);
     }
 }
