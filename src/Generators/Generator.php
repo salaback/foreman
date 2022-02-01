@@ -39,7 +39,7 @@ class Generator
      * If the stub is not loaded, check for a stub in the path provided.
      *
      */
-    private function loadStub(): void
+    protected function loadStub(): void
     {
         if($this->stub == null && $this->stubPath != null) {
             $this->stub = File::get($this->stubPath);
@@ -51,7 +51,7 @@ class Generator
      *
      * @return void
      */
-    private function hydrateStub(): void
+    protected function hydrateStub(): void
     {
         $stub = $this->stub;
 
