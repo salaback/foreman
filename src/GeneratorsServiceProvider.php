@@ -7,6 +7,7 @@ use Intellicoreltd\Generators\Console\Controller;
 use Intellicoreltd\Generators\Console\Factory;
 use Intellicoreltd\Generators\Console\Migration;
 use Intellicoreltd\Generators\Console\Model;
+use Intellicoreltd\Generators\Console\Requests;
 use Intellicoreltd\Generators\Console\Route;
 use Intellicoreltd\Generators\Generators\RoutesGenerator;
 
@@ -29,7 +30,8 @@ class GeneratorsServiceProvider extends ServiceProvider
             Controller::class,
             Migration::class,
             Factory::class,
-            Route::class
+            Route::class,
+            Requests::class
         ]);
     }
 }

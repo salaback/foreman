@@ -6,6 +6,8 @@ use Intellicoreltd\Generators\Generators\ControllerGenerator;
 use Intellicoreltd\Generators\Generators\FactoryGenerator;
 use Intellicoreltd\Generators\Generators\MigrationGenerator;
 use Intellicoreltd\Generators\Generators\ModelGenerator;
+use Intellicoreltd\Generators\Generators\RequestGenerator;
+use Intellicoreltd\Generators\Generators\RequestsGenerator;
 use Intellicoreltd\Generators\Generators\RouteGenerator;
 
 
@@ -63,6 +65,18 @@ class Generators
     public function route(string $location, string $model, string $namespace, string $module): void
     {
         $generator = new RouteGenerator($location, $model, $namespace, $module);
+        $generator->execute();
+    }
+
+    /**
+     * @param string $location
+     * @param string $model
+     * @param string $namespace
+     * @param $module
+     */
+    public function requests(string $location, string $model, string $namespace, string $type): void
+    {
+        $generator = new RequestsGenerator($location, $model, $namespace, $type);
         $generator->execute();
     }
 }

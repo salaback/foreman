@@ -79,7 +79,7 @@ class RouteGeneratorTest extends TestCase
         );
 
         $this->assertStringNotContainsString(
-            "'/second-model' => SecondModelController::class,\n",
+            "Route::prefix('api/v1/other-test')->middleware(['bindings'])->group(function() {",
             $this->openFile($location)
         );
 
