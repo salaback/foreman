@@ -40,7 +40,7 @@ class ModelGeneratorTest extends TestCase
         Generate::model($location, $model, $namespace);
 
         $this->assertStringContainsString(
-            "namespace Intellicoreltd\Package\Test\Test;",
+            "namespace Intellicoreltd\Package\Models\Test\Test;",
             $this->openFile($location)
         );
 

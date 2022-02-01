@@ -1,6 +1,6 @@
 <?php
 
-namespace {{ baseNamespace }}\{{ namespace }};
+namespace {{ baseNamespace }}\Models\{{ namespace }};
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Intellicoreltd\Headlessbps\BaseClasses\Model;

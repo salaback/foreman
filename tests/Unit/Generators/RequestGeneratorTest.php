@@ -21,7 +21,7 @@ class RequestGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::request($location, $model, $namespace, 'create');
+        Generate::requests($location, $model, $namespace, 'create');
 
         $this->assertFileExists($location);
 
@@ -39,7 +39,7 @@ class RequestGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::request($location, $model, $namespace, 'create');
+        Generate::requests($location, $model, $namespace, 'create');
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Requests\Test\Test;",
@@ -58,7 +58,7 @@ class RequestGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::request($location, $model, $namespace, 'create');
+        Generate::requests($location, $model, $namespace, 'create');
 
         $this->assertStringContainsString(
             "class CreateTestRequest extends FormRequest",
@@ -76,7 +76,7 @@ class RequestGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Generate::requests($location, $model, $namespace, 'create');
 
         $this->assertStringNotContainsString(
             "{{",

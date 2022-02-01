@@ -7,21 +7,21 @@ use Illuminate\Support\Str;
 use Intellicoreltd\Generators\Facades\Generate;
 use Intellicoreltd\Generators\Traits\InteractsWithFilesTrait;
 
-class ControllerGeneratorTest extends TestCase
+class ResourceGeneratorTest extends TestCase
 {
     use WithFaker;
     use InteractsWithFilesTrait;
 
     public function test_generatesModelFile()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}Controller.php");
+        $model = 'Test';
+        $location = base_path("tests/scratch/Test.php");
         $namespace = "Test\Test";
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Generate::resource($location, $model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -30,8 +30,8 @@ class ControllerGeneratorTest extends TestCase
 
     public function test_with2LevelNamespace()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}Controller.php");
+        $model = 'Test';
+        $location = base_path("tests/scratch/Test.php");
         $namespace = "Test\Test";
 
         config(['generators' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
@@ -39,15 +39,10 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Generate::resource($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
-            "namespace Intellicoreltd\Package\Http\Controllers\Test\Test;",
-            $this->openFile($location)
-        );
-
-        $this->assertStringContainsString(
-            "use Intellicoreltd\Package\Models\Test\Test\\${model};",
+            "namespace Intellicoreltd\Package\Http\Resources\Test\Test;",
             $this->openFile($location)
         );
 
@@ -56,41 +51,22 @@ class ControllerGeneratorTest extends TestCase
 
     public function test_withModelName()
     {
-        $model = "Test";
+        $model = "TestModel";
         $location = base_path("tests/scratch/test.php");
         $namespace = "Test\Test";
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Generate::resource($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
-            "* Return an array of Tests",
+            '"@type" => "TestModel"',
             $this->openFile($location)
         );
 
         $this->assertStringContainsString(
-            'public function show(Test $test)',
-            $this->openFile($location)
-        );
-
-        $this->deleteFile($location);
-    }
-
-    public function test_withModule()
-    {
-        $model = "Test";
-        $location = base_path("tests/scratch/test.php");
-        $namespace = "Test\Test";
-
-        $this->deleteFile($location);
-        $this->assertFileDoesNotExist($location);
-
-        Generate::controller($location, $model, $namespace, 'test');
-
-        $this->assertStringContainsString(
-            "->through(config('test.filters.index'))",
+            '"self" => route("test-model.show", $this)',
             $this->openFile($location)
         );
 
@@ -105,7 +81,7 @@ class ControllerGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Generate::resource($location, $model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

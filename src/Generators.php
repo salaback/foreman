@@ -2,12 +2,14 @@
 
 namespace Intellicoreltd\Generators;
 
+use Intellicoreltd\Generators\Generators\CollectionGenerator;
 use Intellicoreltd\Generators\Generators\ControllerGenerator;
 use Intellicoreltd\Generators\Generators\FactoryGenerator;
 use Intellicoreltd\Generators\Generators\MigrationGenerator;
 use Intellicoreltd\Generators\Generators\ModelGenerator;
 use Intellicoreltd\Generators\Generators\RequestGenerator;
 use Intellicoreltd\Generators\Generators\RequestsGenerator;
+use Intellicoreltd\Generators\Generators\ResourceGenerator;
 use Intellicoreltd\Generators\Generators\RouteGenerator;
 
 
@@ -77,6 +79,30 @@ class Generators
     public function requests(string $location, string $model, string $namespace, string $type): void
     {
         $generator = new RequestsGenerator($location, $model, $namespace, $type);
+        $generator->execute();
+    }
+
+    /**
+     * @param string $location
+     * @param string $model
+     * @param string $namespace
+     * @param $module
+     */
+    public function resource(string $location, string $model, string $namespace): void
+    {
+        $generator = new ResourceGenerator($location, $model, $namespace);
+        $generator->execute();
+    }
+
+    /**
+     * @param string $location
+     * @param string $model
+     * @param string $namespace
+     * @param $module
+     */
+    public function collection(string $location, string $model, string $namespace): void
+    {
+        $generator = new CollectionGenerator($location, $model, $namespace);
         $generator->execute();
     }
 }

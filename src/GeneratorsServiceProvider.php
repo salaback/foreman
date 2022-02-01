@@ -8,6 +8,7 @@ use Intellicoreltd\Generators\Console\Factory;
 use Intellicoreltd\Generators\Console\Migration;
 use Intellicoreltd\Generators\Console\Model;
 use Intellicoreltd\Generators\Console\Requests;
+use Intellicoreltd\Generators\Console\Resource;
 use Intellicoreltd\Generators\Console\Route;
 use Intellicoreltd\Generators\Generators\RoutesGenerator;
 
@@ -31,7 +32,8 @@ class GeneratorsServiceProvider extends ServiceProvider
             Migration::class,
             Factory::class,
             Route::class,
-            Requests::class
+            Requests::class,
+            Resource::class
         ]);
     }
 }
