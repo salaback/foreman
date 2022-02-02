@@ -27,7 +27,7 @@ jobs:
           ${{ runner.os }}-php-
 
     - name: Set GitHub API Key
-      run: composer config -g github-oauth.github.com ${{ secrets.GH_API_KEY}}
+      run: composer config -g github-oauth.github.com ${{ secrets.GH_OATH_TOKEN}}
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
