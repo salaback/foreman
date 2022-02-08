@@ -1,8 +1,8 @@
 <?php
 
-namespace Alablaster\Generators\Tests;
+namespace Alablaster\Foreman\Tests;
 
-use Alablaster\Generators\GeneratorsServiceProvider;
+use Alablaster\Foreman\GeneratorsServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {

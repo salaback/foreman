@@ -5,7 +5,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Facades\Intellicoreltd\Generators\Generators;
-use Alablaster\Generators\Facades\Generate;
+use Alablaster\Foreman\Facades\Generate;
 
 class Migration extends Command
 {

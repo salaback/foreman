@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Alablaster\\Generators\\": "src"
+            "Alablaster\\Foreman\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Alablaster\\Generators\\Tests\\": "tests"
+            "Alablaster\\Foreman\\Tests\\": "tests"
         }
     },
     "extra": {

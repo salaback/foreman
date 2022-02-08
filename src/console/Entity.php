@@ -4,7 +4,7 @@ namespace Alablaster\Foreman\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Alablaster\Generators\Facades\Generate;
+use Alablaster\Foreman\Facades\Generate;
 
 class Entity extends Command
 {

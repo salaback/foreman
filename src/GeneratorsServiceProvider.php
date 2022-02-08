@@ -1,6 +1,6 @@
 <?php
 
-namespace Alablaster\Generators;
+namespace Alablaster\Foreman;
 
 use Illuminate\Support\ServiceProvider;
 use Alablaster\Foreman\Console\Controller;

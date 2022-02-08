@@ -1,10 +1,10 @@
 <?php
 
-namespace Alablaster\Generators\Tests\Unit\Console;
+namespace Alablaster\Foreman\Tests\Unit\Console;
 
 use Illuminate\Support\Facades\Artisan;
-use Alablaster\Generators\Facades\Generate;
-use Alablaster\Generators\Tests\TestCase;
+use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Tests\TestCase;
 
 class MigrationTest extends TestCase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Alablaster\Generators\Tests;
+namespace Alablaster\Foreman\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Alablaster\Generators\Facades\Generate;
-use Alablaster\Generators\Traits\InteractsWithFilesTrait;
+use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class ResourceGeneratorTest extends TestCase
 {
