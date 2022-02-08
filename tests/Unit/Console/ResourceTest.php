@@ -1,10 +1,10 @@
 <?php
 
-namespace Intellicoreltd\Generators\Tests\Unit\Console;
+namespace Alablaster\Generators\Tests\Unit\Console;
 
 use Illuminate\Support\Facades\Artisan;
-use Intellicoreltd\Generators\Facades\Generate;
-use Intellicoreltd\Generators\Tests\TestCase;
+use Alablaster\Generators\Facades\Generate;
+use Alablaster\Generators\Tests\TestCase;
 
 class ResourceTest extends TestCase
 {

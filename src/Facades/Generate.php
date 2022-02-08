@@ -1,6 +1,6 @@
 <?php
 
-namespace Intellicoreltd\Generators\Facades;
+namespace Alablaster\Foreman\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

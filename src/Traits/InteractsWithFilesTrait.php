@@ -1,6 +1,6 @@
 <?php
 
-namespace Intellicoreltd\Generators\Traits;
+namespace Alablaster\Foreman\Traits;
 
 trait InteractsWithFilesTrait
 {

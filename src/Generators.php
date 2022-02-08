@@ -1,16 +1,15 @@
 <?php
 
-namespace Intellicoreltd\Generators;
+namespace Alablaster\Foreman;
 
-use Intellicoreltd\Generators\Generators\CollectionGenerator;
-use Intellicoreltd\Generators\Generators\ControllerGenerator;
-use Intellicoreltd\Generators\Generators\FactoryGenerator;
-use Intellicoreltd\Generators\Generators\MigrationGenerator;
-use Intellicoreltd\Generators\Generators\ModelGenerator;
-use Intellicoreltd\Generators\Generators\RequestGenerator;
-use Intellicoreltd\Generators\Generators\RequestsGenerator;
-use Intellicoreltd\Generators\Generators\ResourceGenerator;
-use Intellicoreltd\Generators\Generators\RouteGenerator;
+use Alablaster\Foreman\Generators\CollectionGenerator;
+use Alablaster\Foreman\Generators\ControllerGenerator;
+use Alablaster\Foreman\Generators\FactoryGenerator;
+use Alablaster\Foreman\Generators\MigrationGenerator;
+use Alablaster\Foreman\Generators\ModelGenerator;
+use Alablaster\Foreman\Generators\RequestsGenerator;
+use Alablaster\Foreman\Generators\ResourceGenerator;
+use Alablaster\Foreman\Generators\RouteGenerator;
 
 
 class Generators

@@ -1,8 +1,8 @@
 <?php
 
-namespace Intellicoreltd\Generators\Tests;
+namespace Alablaster\Generators\Tests;
 
-use Intellicoreltd\Generators\GeneratorsServiceProvider;
+use Alablaster\Generators\GeneratorsServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Intellicoreltd\Generators\Generators;
+namespace Alablaster\Foreman\Generators;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Intellicoreltd\Generators\Exceptions\MissingHydrationProperty;
-use Intellicoreltd\Generators\Exceptions\MissingStubException;
+use Alablaster\Generators\Exceptions\MissingHydrationProperty;
+use Alablaster\Generators\Exceptions\MissingStubException;
 use function PHPUnit\Framework\stringContains;
 
 class RouteGenerator extends Generator

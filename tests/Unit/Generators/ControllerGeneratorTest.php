@@ -1,11 +1,11 @@
 <?php
 
-namespace Intellicoreltd\Generators\Tests;
+namespace Alablaster\Generators\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Intellicoreltd\Generators\Facades\Generate;
-use Intellicoreltd\Generators\Traits\InteractsWithFilesTrait;
+use Alablaster\Generators\Facades\Generate;
+use Alablaster\Generators\Traits\InteractsWithFilesTrait;
 
 class ControllerGeneratorTest extends TestCase
 {

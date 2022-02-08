@@ -1,10 +1,10 @@
 <?php
 
-namespace Intellicoreltd\Generators\Generators;
+namespace Alablaster\Foreman\Generators;
 
 use Illuminate\Support\Facades\File;
-use Intellicoreltd\Generators\Traits\ApplyFilterTrait;
-use Intellicoreltd\Generators\Traits\InteractsWithFilesTrait;
+use Alablaster\Foreman\Traits\ApplyFilterTrait;
+use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class Generator
 {

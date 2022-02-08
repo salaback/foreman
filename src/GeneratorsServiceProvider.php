@@ -1,17 +1,17 @@
 <?php
 
-namespace Intellicoreltd\Generators;
+namespace Alablaster\Generators;
 
 use Illuminate\Support\ServiceProvider;
-use Intellicoreltd\Generators\Console\Controller;
-use Intellicoreltd\Generators\Console\Entity;
-use Intellicoreltd\Generators\Console\Factory;
-use Intellicoreltd\Generators\Console\Migration;
-use Intellicoreltd\Generators\Console\Model;
-use Intellicoreltd\Generators\Console\Requests;
-use Intellicoreltd\Generators\Console\Resource;
-use Intellicoreltd\Generators\Console\Route;
-use Intellicoreltd\Generators\Generators\RoutesGenerator;
+use Alablaster\Foreman\Console\Controller;
+use Alablaster\Foreman\Console\Entity;
+use Alablaster\Foreman\Console\Factory;
+use Alablaster\Foreman\Console\Migration;
+use Alablaster\Foreman\Console\Model;
+use Alablaster\Foreman\Console\Requests;
+use Alablaster\Foreman\Console\Resource;
+use Alablaster\Foreman\Console\Route;
+use Alablaster\Foreman\Generators\RoutesGenerator;
 
 class GeneratorsServiceProvider extends ServiceProvider
 {

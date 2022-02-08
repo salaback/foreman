@@ -1,12 +1,12 @@
 {
-    "name": "intellicoreltd/genderators",
-    "description": "Generator utility for HeadlessBPS",
+    "name": "alablaster/foreman",
+    "description": "Generator utility for Laravel Projects",
     "type": "library",
-    "license": "proprietary",
+    "license": "MIT",
     "authors": [
         {
             "name": "Sean Alaback",
-            "email": "sean.alaback@intellicore.co.uk"
+            "email": "sean.alaback@gmail.com"
         }
     ],
     "require": {
@@ -18,18 +18,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Intellicoreltd\\Generators\\": "src"
+            "Alablaster\\Generators\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Intellicoreltd\\Generators\\Tests\\": "tests"
+            "Alablaster\\Generators\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Intellicoreltd\\Generators\\GeneratorsServiceProvider"
+                "Alablaster\\Generators\\GeneratorsServiceProvider"
             ]
         }
     }

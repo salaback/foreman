@@ -1,6 +1,6 @@
 <?php
 
-namespace Intellicoreltd\Generators\Generators;
+namespace Alablaster\Foreman\Generators;
 
 class ControllerGenerator extends Generator
 {

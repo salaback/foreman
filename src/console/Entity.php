@@ -1,11 +1,10 @@
 <?php
 
-namespace Intellicoreltd\Generators\Console;
+namespace Alablaster\Foreman\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Facades\Intellicoreltd\Generators\Generators;
-use Intellicoreltd\Generators\Facades\Generate;
+use Alablaster\Generators\Facades\Generate;
 
 class Entity extends Command
 {

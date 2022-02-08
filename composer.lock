@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10577f55bc9c2ada6a4575ea6b1803d6",
+    "content-hash": "e694f90ef8ada6873e29157f4a081d93",
     "packages": [],
     "packages-dev": [
         {
@@ -1565,12 +1565,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "DeepCopy\\": "src/DeepCopy/"
-                },
                 "files": [
                     "src/DeepCopy/deep_copy.php"
-                ]
+                ],
+                "psr-4": {
+                    "DeepCopy\\": "src/DeepCopy/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2071,12 +2071,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Orchestra\\Testbench\\": "src/"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "Orchestra\\Testbench\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [

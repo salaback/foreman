@@ -1,6 +1,6 @@
 <?php
 
-namespace Intellicoreltd\Generators\Exceptions;
+namespace Alablaster\Foreman\Exceptions;
 
 use Throwable;
 

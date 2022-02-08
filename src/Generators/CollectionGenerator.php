@@ -1,6 +1,6 @@
 <?php
 
-namespace Intellicoreltd\Generators\Generators;
+namespace Alablaster\Foreman\Generators;
 
 class CollectionGenerator extends Generator
 {

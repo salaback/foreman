@@ -1,11 +1,11 @@
 <?php
 
-namespace Intellicoreltd\Generators\Console;
+namespace Alablaster\Foreman\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Facades\Intellicoreltd\Generators\Generators;
-use Intellicoreltd\Generators\Facades\Generate;
+use Alablaster\Generators\Facades\Generate;
 
 class Migration extends Command
 {
