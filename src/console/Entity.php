@@ -4,11 +4,11 @@ namespace Alablaster\Foreman\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 
 class Entity extends Command
 {
-    protected $signature = 'generate:entity {model} {--N|namespace} {--M|module}';
+    protected $signature = 'foreman:entity {model} {--N|namespace} {--M|module}';
 
     protected $description = 'Create an entity';
 
@@ -21,37 +21,37 @@ class Entity extends Command
 
         $this->info('Generating ' . $model . ' entity');
 
-        Artisan::call('generate:controller', [
+        Artisan::call('foreman:controller', [
             'model' => $model,
             '-N' => $namespace,
             '-M' => $module
         ]);
 
-        Artisan::call('generate:factory', [
+        Artisan::call('foreman:factory', [
             'model' => $model,
             '-N' => $namespace,
         ]);
 
-        Artisan::call('generate:migration', [
+        Artisan::call('foreman:migration', [
             'model' => $model,
         ]);
 
-        Artisan::call('generate:model', [
-            'model' => $model,
-            '-N' => $namespace
-        ]);
-
-        Artisan::call('generate:requests', [
+        Artisan::call('foreman:model', [
             'model' => $model,
             '-N' => $namespace
         ]);
 
-        Artisan::call('generate:resource', [
+        Artisan::call('foreman:requests', [
             'model' => $model,
             '-N' => $namespace
         ]);
 
-        Artisan::call('generate:route', [
+        Artisan::call('foreman:resource', [
+            'model' => $model,
+            '-N' => $namespace
+        ]);
+
+        Artisan::call('foreman:route', [
             'model' => $model,
             '-N' => $namespace,
             '-M' => $module

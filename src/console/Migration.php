@@ -4,12 +4,12 @@ namespace Alablaster\Foreman\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use Facades\Intellicoreltd\Generators\Generators;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
+use Alablaster\Foreman\Facades\Location;
 
 class Migration extends Command
 {
-    protected $signature = 'generate:migration {model}';
+    protected $signature = 'foreman:migration {model}';
 
     protected $description = 'Create a model';
 
@@ -20,11 +20,9 @@ class Migration extends Command
 
         $this->info('Generating ' . $model . ' Migration');
 
-        $location = base_path(
-            "database/migrations/" . Carbon::now()->year . '_' . Carbon::now()->month . '_' . Carbon::now()->day
-            . '_' . Carbon::now()->milliseconds . '_create_' . Str::snake($model) . '_table.php');
+        $location = Location::migration($model);
 
-        Generate::migration($location, $model);
+        Foreman::migration($location, $model);
 
         $this->info('Migration created.');
     }

@@ -4,7 +4,7 @@ namespace Alablaster\Foreman\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class MigrationGeneratorTest extends TestCase
@@ -20,7 +20,7 @@ class MigrationGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::migration($location, $model);
+        Foreman::migration($location, $model);
 
         $this->assertFileExists($location);
 
@@ -35,7 +35,7 @@ class MigrationGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::migration($location, $model);
+        Foreman::migration($location, $model);
 
         $this->assertStringContainsString(
             "class CreateTestsTable extends Migration",
@@ -59,7 +59,7 @@ class MigrationGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Foreman::model($location, $model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

@@ -4,7 +4,7 @@ namespace Alablaster\Foreman\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class ModelGeneratorTest extends TestCase
@@ -20,7 +20,7 @@ class ModelGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Foreman::model($location, $model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -37,7 +37,7 @@ class ModelGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Foreman::model($location, $model, $namespace);
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Models\Test\Test;",
@@ -60,7 +60,7 @@ class ModelGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Foreman::model($location, $model, $namespace);
 
         $this->assertStringContainsString(
             "class ${model} extends Model",
@@ -84,7 +84,7 @@ class ModelGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::model($location, $model, $namespace);
+        Foreman::model($location, $model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

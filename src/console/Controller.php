@@ -4,11 +4,11 @@ namespace Alablaster\Foreman\Console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Facades\Intellicoreltd\Generators\Generators;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 
 class Controller extends Command
 {
-    protected $signature = 'generate:controller {model} {--N|namespace} {--M|module}';
+    protected $signature = 'foreman:controller {model} {--N|namespace} {--M|module}';
 
     protected $description = 'Create a resource controller';
 
@@ -25,7 +25,7 @@ class Controller extends Command
 
         $location = base_path('src/Http/Controllers/' . $directory . $model . 'Controller.php');
 
-        Generate::controller($location, $model, $namespace, $module);
+        Foreman::controller($location, $model, $namespace, $module);
 
         $this->info("${model} controller created.");
     }

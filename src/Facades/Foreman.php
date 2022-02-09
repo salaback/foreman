@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Facade;
 
  */
 
-class Generate extends Facade
+class Foreman extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'generate';
+        return 'foreman';
     }
 }

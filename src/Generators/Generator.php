@@ -57,7 +57,7 @@ class Generator
 
         $stub = str_replace(
             '{{ baseNamespace }}',
-            config('generators.base-namespace'),
+            config('foreman.base-namespace'),
             $stub
         );
 

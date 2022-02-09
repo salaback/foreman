@@ -4,7 +4,7 @@ namespace Alablaster\Foreman\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class RouteGeneratorTest extends TestCase
@@ -21,7 +21,7 @@ class RouteGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $this->assertFileExists($location);
 
@@ -37,7 +37,7 @@ class RouteGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $model = 'SecondModel';
 
@@ -48,7 +48,7 @@ class RouteGeneratorTest extends TestCase
             $this->openFile($location)
         );
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "/second-model' => SecondModelController::class",
@@ -67,7 +67,7 @@ class RouteGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $model = 'SecondModel';
 
@@ -83,7 +83,7 @@ class RouteGeneratorTest extends TestCase
             $this->openFile($location)
         );
 
-        Generate::route($location, $model, $namespace, 'other-test');
+        Foreman::route($location, $model, $namespace, 'other-test');
 
         $this->assertStringContainsString(
             "Route::prefix('api/v1/other-test')->middleware(['bindings'])->group(function() {",
@@ -109,7 +109,7 @@ class RouteGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "use Intellicoreltd\Package\Http\Controllers\Test\Test\TestController;",
@@ -128,7 +128,7 @@ class RouteGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "        '/test-model' => TestModelController::class,",
@@ -147,7 +147,7 @@ class RouteGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "Route::prefix('api/v1/test')->middleware(['bindings'])->group(function() {",
@@ -165,7 +165,7 @@ class RouteGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::route($location, $model, $namespace, 'test');
+        Foreman::route($location, $model, $namespace, 'test');
 
         $this->assertStringNotContainsString(
             "{{",

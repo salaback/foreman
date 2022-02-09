@@ -1,14 +1,14 @@
 <?php
 
 namespace Alablaster\Foreman\Console;
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Facades\Intellicoreltd\Generators\Generators;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 
 class Route extends Command
 {
-    protected $signature = 'generate:route {model} {--N|namespace} {--M|module}';
+    protected $signature = 'foreman:route {model} {--N|namespace} {--M|module}';
 
     protected $description = 'Create a route';
 
@@ -21,9 +21,9 @@ class Route extends Command
 
         $this->info('Generating ' . $model . ' Route');
 
-        $location = base_path('routes/api.php');
+        $location = Location::route('api');
 
-        Generate::route($location, $model, $namespace, $module);
+        Foreman::route($location, $model, $namespace, $module);
 
         $this->info('route generated');
     }

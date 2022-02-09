@@ -1,14 +1,14 @@
 <?php
 
 namespace Alablaster\Foreman\Console;
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Facades\Intellicoreltd\Generators\Generators;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 
 class Resource extends Command
 {
-    protected $signature = 'generate:resource {model} {--N|namespace}';
+    protected $signature = 'foreman:resource {model} {--N|namespace} {--D|domain}';
 
     protected $description = 'Create resource classes';
 
@@ -16,17 +16,17 @@ class Resource extends Command
     {
         $model = Str::studly(Str::singular($this->argument('model')));
         $namespace = $this->option('namespace');
-        $directory = $namespace ? str_replace("\\", "/", $namespace) . '/' : null;
+        $domain = $this->option('domain');
 
-        $resourceLocation = base_path('src/Http/Resources/' . $directory . $model . 'Resource.php');
-        $collectionResourceLocation = base_path('src/Http/Resources/' . $directory . $model . 'CollectionResource.php');
-        $collectionLocation = base_path('src/Http/Resources/' . $directory . $model . 'Collection.php');
+        $resourceLocation = Location::resource($model, $namespace, 'Resource', $domain);
+        $collectionResourceLocation = Location::resource($model, $namespace, 'CollectionResource', $domain);
+        $collectionLocation = Location::resource($model, $namespace, 'Collection', $domain);
 
         $this->info('Generating ' . $model . ' resource classes');
 
-        Generate::resource($resourceLocation, $model, $namespace);
-        Generate::resource($collectionResourceLocation, $model, $namespace);
-        Generate::collection($collectionLocation, $model, $namespace);
+        Foreman::resource($resourceLocation, $model, $namespace);
+        Foreman::resource($collectionResourceLocation, $model, $namespace);
+        Foreman::collection($collectionLocation, $model, $namespace);
 
         $this->info('Resource classes generated');
     }

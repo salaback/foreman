@@ -4,7 +4,7 @@ namespace Alablaster\Foreman\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class RequestGeneratorTest extends TestCase
@@ -21,7 +21,7 @@ class RequestGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::requests($location, $model, $namespace, 'create');
+        Foreman::requests($location, $model, $namespace, 'create');
 
         $this->assertFileExists($location);
 
@@ -39,7 +39,7 @@ class RequestGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::requests($location, $model, $namespace, 'create');
+        Foreman::requests($location, $model, $namespace, 'create');
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Requests\Test\Test;",
@@ -58,7 +58,7 @@ class RequestGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::requests($location, $model, $namespace, 'create');
+        Foreman::requests($location, $model, $namespace, 'create');
 
         $this->assertStringContainsString(
             "class CreateTestRequest extends FormRequest",
@@ -76,7 +76,7 @@ class RequestGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::requests($location, $model, $namespace, 'create');
+        Foreman::requests($location, $model, $namespace, 'create');
 
         $this->assertStringNotContainsString(
             "{{",

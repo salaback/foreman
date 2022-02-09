@@ -3,17 +3,17 @@
 namespace Alablaster\Foreman\Tests\Unit\Console;
 
 use Illuminate\Support\Facades\Artisan;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 use Alablaster\Foreman\Tests\TestCase;
 
 class MigrationTest extends TestCase
 {
     public function test_normal()
     {
-        Generate::shouldReceive('migration')
+        Foreman::shouldReceive('migration')
             ->once();
 
-        Artisan::call('generate:migration', [
+        Artisan::call('foreman:migration', [
             'model' => 'Test',
         ]);
     }

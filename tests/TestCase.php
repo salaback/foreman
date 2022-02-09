@@ -2,7 +2,7 @@
 
 namespace Alablaster\Foreman\Tests;
 
-use Alablaster\Foreman\GeneratorsServiceProvider;
+use Alablaster\Foreman\ForemanServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -10,7 +10,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            GeneratorsServiceProvider::class,
+            ForemanServiceProvider::class,
         ];
     }
 

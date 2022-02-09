@@ -4,7 +4,7 @@ namespace Alablaster\Foreman\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class ControllerGeneratorTest extends TestCase
@@ -21,7 +21,7 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace, 'test');
 
         $this->assertFileExists($location);
 
@@ -39,7 +39,7 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Controllers\Test\Test;",
@@ -63,7 +63,7 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "* Return an array of Tests",
@@ -87,7 +87,7 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "->through(config('test.filters.index'))",
@@ -105,7 +105,7 @@ class ControllerGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace, 'test');
 
         $this->assertStringNotContainsString(
             "{{",

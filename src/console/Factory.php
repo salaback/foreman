@@ -1,14 +1,14 @@
 <?php
 
 namespace Alablaster\Foreman\Console;
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Facades\Intellicoreltd\Generators\Generators;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 
 class Factory extends Command
 {
-    protected $signature = 'generate:factory {model} {--N|namespace}';
+    protected $signature = 'foreman:factory {model} {--N|namespace}';
 
     protected $description = 'Create a factory';
 
@@ -20,11 +20,9 @@ class Factory extends Command
 
         $this->info('Generating ' . $model . ' Model');
 
-        $directory = str_replace("\\", "/", $namespace);
+        $location = Location::factory($model, $namespace);
 
-        $location = base_path('database/factories/' . $directory . '/' . $model . 'Factory.php');
-
-        Generate::factory($location, $model, $namespace);
+        Foreman::factory($location, $model, $namespace);
 
         $this->info("Generated $model factory");
     }

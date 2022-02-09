@@ -4,7 +4,7 @@ namespace Alablaster\Foreman\Tests;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 
 class ResourceGeneratorTest extends TestCase
@@ -21,7 +21,7 @@ class ResourceGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::resource($location, $model, $namespace);
+        Foreman::resource($location, $model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -39,7 +39,7 @@ class ResourceGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::resource($location, $model, $namespace, 'test');
+        Foreman::resource($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Resources\Test\Test;",
@@ -58,7 +58,7 @@ class ResourceGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Generate::resource($location, $model, $namespace, 'test');
+        Foreman::resource($location, $model, $namespace, 'test');
 
         $this->assertStringContainsString(
             '"@type" => "TestModel"',
@@ -81,7 +81,7 @@ class ResourceGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Generate::resource($location, $model, $namespace);
+        Foreman::resource($location, $model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

@@ -1,14 +1,14 @@
 <?php
 
 namespace Alablaster\Foreman\Console;
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Facades\Intellicoreltd\Generators\Generators;
-use Alablaster\Foreman\Facades\Generate;
+use Alablaster\Foreman\Facades\Foreman;
 
 class Model extends Command
 {
-    protected $signature = 'generate:model {model} {--N|namespace}';
+    protected $signature = 'foreman:model {model} {--N|namespace} {--D|domain}';
 
     protected $description = 'Create a model';
 
@@ -17,14 +17,13 @@ class Model extends Command
 
         $model = Str::studly(Str::singular($this->argument('model')));
         $namespace = $this->option('namespace');
+        $domain = $this->option('domain');
 
         $this->info('Generating ' . $model . ' Model');
 
-        $directory = str_replace("\\", "/", $namespace);
+        $location = Location::model($model, $namespace, $domain);
 
-        $location = base_path('src/Models/' . $directory . '/' . $model . '.php');
-
-        Generate::model($location, $model, $namespace);
+        Foreman::model($location, $model, $namespace);
 
         $this->info('Inst');
     }

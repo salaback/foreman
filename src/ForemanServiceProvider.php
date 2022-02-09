@@ -11,17 +11,20 @@ use Alablaster\Foreman\Console\Model;
 use Alablaster\Foreman\Console\Requests;
 use Alablaster\Foreman\Console\Resource;
 use Alablaster\Foreman\Console\Route;
-use Alablaster\Foreman\Generators\RoutesGenerator;
 
-class GeneratorsServiceProvider extends ServiceProvider
+class ForemanServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind('generate', function($app) {
+        $this->app->bind('foreman', function($app) {
             return new Generators();
         });
 
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'generators');
+        $this->app->bind('location', function($app) {
+            return new Locations();
+        });
+
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'foreman');
 
     }
 
