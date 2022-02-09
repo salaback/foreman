@@ -3,14 +3,14 @@
 namespace Alablaster\Foreman;
 
 use Illuminate\Support\ServiceProvider;
-use Alablaster\Foreman\Console\Controller;
-use Alablaster\Foreman\Console\Entity;
-use Alablaster\Foreman\Console\Factory;
-use Alablaster\Foreman\Console\Migration;
-use Alablaster\Foreman\Console\Model;
-use Alablaster\Foreman\Console\Requests;
-use Alablaster\Foreman\Console\Resource;
-use Alablaster\Foreman\Console\Route;
+use Alablaster\Foreman\console\Controller;
+use Alablaster\Foreman\console\Entity;
+use Alablaster\Foreman\console\Factory;
+use Alablaster\Foreman\console\Migration;
+use Alablaster\Foreman\console\Model;
+use Alablaster\Foreman\console\Requests;
+use Alablaster\Foreman\console\Resource;
+use Alablaster\Foreman\console\Route;
 
 class ForemanServiceProvider extends ServiceProvider
 {
