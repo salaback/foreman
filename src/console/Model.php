@@ -1,6 +1,6 @@
 <?php
 
-namespace Alablaster\Foreman\Console;
+namespace Alablaster\Foreman\console;
 use Alablaster\Foreman\Facades\Location;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;

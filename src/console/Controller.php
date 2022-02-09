@@ -1,9 +1,8 @@
 <?php
 
-namespace Alablaster\Foreman\Console;
+namespace Alablaster\Foreman\console;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Facades\Intellicoreltd\Generators\Generators;
 use Alablaster\Foreman\Facades\Foreman;
 
 class Controller extends Command
