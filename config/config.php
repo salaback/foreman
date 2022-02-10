@@ -10,5 +10,6 @@ return [
         "request" => "Http/Requests",
         "resource" => "Http/Resources",
         "routes" => "routes"
-    ]
+    ],
+    "wrapper" => "src"
 ];

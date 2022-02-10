@@ -18,9 +18,9 @@ class Resource extends Command
         $namespace = $this->option('namespace');
         $domain = $this->option('domain');
 
-        $resourceLocation = Location::resource($model, $namespace, 'Resource', $domain);
-        $collectionResourceLocation = Location::resource($model, $namespace, 'CollectionResource', $domain);
-        $collectionLocation = Location::resource($model, $namespace, 'Collection', $domain);
+        $resourceLocation = Location::resource($model, 'Resource', $namespace, $domain);
+        $collectionResourceLocation = Location::resource($model, 'CollectionResource', $namespace, $domain);
+        $collectionLocation = Location::resource($model, 'Collection', $namespace, $domain);
 
         $this->info('Generating ' . $model . ' resource classes');
 

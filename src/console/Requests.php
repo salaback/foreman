@@ -18,8 +18,8 @@ class Requests extends Command
         $namespace = $this->option('namespace');
         $domain = $this->option('domain');
 
-        $createLocation = Location::request($model, $namespace, 'Create', $domain);
-        $updateLocation = Location::request($model, $namespace, 'Update', $domain);
+        $createLocation = Location::request(model: $model, type:'Create', namespace: $namespace, domain: $domain);
+        $updateLocation = Location::request(model: $model, type:'Update', namespace: $namespace, domain: $domain);
 
         $this->info('Generating ' . $model . ' request classes');
 

@@ -7,9 +7,12 @@ use Illuminate\Support\Str;
 abstract class Location
 {
 
-    public bool $inSource = true;
+    public bool $inWrapper = true;
 
-    public function __construct(protected string $model, protected string $namespace, protected string $domain)
+    public function __construct(
+        protected string $model,
+        protected ?string $namespace = null,
+        protected ?string $domain = null)
     {}
 
     abstract protected function fileName(): string;
@@ -31,7 +34,7 @@ abstract class Location
 
     protected function srcPath(): string
     {
-        $location = $this->inSource ? 'src/' : '';
+        $location = $this->inWrapper ? config('foreman.wrapper') . '/' : '';
 
         if($this->domain) {
             $location .= $this->domain . '/';

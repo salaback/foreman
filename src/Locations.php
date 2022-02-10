@@ -28,13 +28,15 @@ class Locations
 
     /**
      * @param string $model
-     * @param string $namespace
-     * @param string $module
+     * @param string|null $namespace
+     * @param string|null $domain
+     * @param string|null $module
+     * @return string
      */
-    public function controller(string $model, string $namespace, string $module): void
+    public function controller(string $model, ?string $namespace, ?string $domain, ?string $module): string
     {
-        $location = new ControllerLocation($model, $namespace, $module);
-        $location->run();
+        $location = new ControllerLocation($model, $namespace, $domain, $module);
+        return $location->run();
     }
 
     /**
@@ -71,27 +73,27 @@ class Locations
 
     /**
      * @param string $model
-     * @param string $namespace
      * @param string $type
+     * @param string|null $namespace
      * @param string|null $domain
      * @return string
      */
-    public function request(string $model, string $namespace, string $type, ?string $domain): string
+    public function request(string $model, string $type, ?string $namespace, ?string $domain): string
     {
-        $location = new RequestLocation($model, $namespace, $domain, $type);
+        $location = new RequestLocation($model, $type, $namespace, $domain);
         return $location->run();
     }
 
     /**
      * @param string $model
-     * @param string $namespace
      * @param string $type
+     * @param string|null $namespace
      * @param string|null $domain
      * @return string
      */
-    public function resource(string $model, string $namespace, string $type, ?string $domain): string
+    public function resource(string $model, string $type, ?string $namespace, ?string $domain): string
     {
-        $location = new ResourceLocation($model, $namespace, $type, $domain);
+        $location = new ResourceLocation($model, $type, $namespace, $domain);
         return $location->run();
     }
 }

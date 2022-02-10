@@ -14,7 +14,7 @@ class MigrationLocation extends Location
         $this->model = $model;
         $this->namespace = '';
         $this->domain = '';
-        $this->inSource = false;
+        $this->inWrapper = false;
     }
 
     protected function fileName(): string

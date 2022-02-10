@@ -8,13 +8,13 @@ use Illuminate\Support\Str;
 class FactoryLocation extends Location
 {
 
-    public function __construct(string $model, string $namespace)
+    public function __construct(string $model, ?string $namespace = null)
     {
         $this->model = $model;
         $this->namespace = $namespace;
         $this->domain = '';
 
-        $this->inSource = false;
+        $this->inWrapper = false;
     }
 
 

@@ -7,14 +7,13 @@ use Illuminate\Support\Str;
 
 class RequestLocation extends Location
 {
-    protected string $type;
-
-    public function __construct(string $model, string $namespace, string $domain, string $type)
+    public function __construct(
+        public string $model,
+        public string $type,
+        public ?string $namespace = null,
+        public  ?string $domain = null,
+    )
     {
-        $this->model = $model;
-        $this->namespace = $namespace;
-        $this->domain = $domain;
-        $this->type = $type;
     }
 
     protected function fileName(): string

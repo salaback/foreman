@@ -13,7 +13,7 @@ class RouteLocation extends Location
         $this->model = '';
         $this->namespace = '';
         $this->domain = '';
-        $this->inSource = false;
+        $this->inWrapper = false;
         $this->type = $type;
     }
 
