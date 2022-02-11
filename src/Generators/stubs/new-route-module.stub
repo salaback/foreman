@@ -1,7 +1,0 @@
-Route::prefix('api/v1/{{ module }}')->middleware(['bindings'])->group(function() {
-    Route::apiResources([
-        /* {{ module.title }} Resource Controllers */
-        '/{{ model.singular.kebab }}' => {{ model.studly.singular }}Controller::class,
-        /* End {{ module.title }} Resource Controllers */
-    ]);
-});

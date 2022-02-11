@@ -34,7 +34,7 @@ class ResourceGeneratorTest extends TestCase
         $location = base_path("tests/scratch/Test.php");
         $namespace = "Test\Test";
 
-        config(['generators' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
+        config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);

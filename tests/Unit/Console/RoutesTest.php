@@ -17,7 +17,7 @@ class RoutesTest extends TestCase
         Artisan::call('foreman:route', [
             'model' => 'Test',
             '-N' => 'Test\Place',
-            '-M' => 'test'
+            '-D' => 'test'
         ]);
     }
 }

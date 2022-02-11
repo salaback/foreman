@@ -2,21 +2,21 @@
 
 namespace Alablaster\Foreman\Generators;
 
+use Alablaster\Foreman\Exceptions\MissingHydrationProperty;
+use Alablaster\Foreman\Exceptions\MissingStubException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Alablaster\Generators\Exceptions\MissingHydrationProperty;
-use Alablaster\Generators\Exceptions\MissingStubException;
 use function PHPUnit\Framework\stringContains;
 
 class RouteGenerator extends Generator
 {
-    public function __construct(string $location, string $model, string $namespace, string $module)
+    public function __construct(string $location, string $model, string $namespace, string $domain)
     {
         $stubPath = __DIR__ . '/stubs/routes.stub';
         $properties = [
             'model' => $model,
             'namespace' => $namespace,
-            'module'=> $module
+            'domain'=> $domain
         ];
 
         parent::__construct(
@@ -38,14 +38,14 @@ class RouteGenerator extends Generator
             }
         } else {
 
-            if(!array_key_exists('module', $this->properties)) {
-                throw new MissingHydrationProperty('module');
+            if(!array_key_exists('domain', $this->properties)) {
+                throw new MissingHydrationProperty('domain');
             }
 
-            if(strpos($this->stub, '/* ' . Str::title($this->properties['module']). ' Resource Controllers */')) {
+            if(strpos($this->stub, '/* ' . Str::title($this->properties['domain']). ' Resource Controllers */')) {
                 $this->addNewRouteToStub();
             } else {
-                $this->addNewModuleToStub();
+                $this->addNewDomainToStub();
             }
         }
 
@@ -62,13 +62,13 @@ class RouteGenerator extends Generator
         $this->stub = substr_replace($this->stub, $newRoute, $insertPoint, 0);
     }
 
-    private function addNewModuleToStub(): void
+    private function addNewDomainToStub(): void
     {
         $this->stub = File::get($this->location);
 
-        $newModule = File::get(__DIR__ . '/stubs/new-route-module.stub');
+        $newModule = File::get(__DIR__ . '/stubs/new-route-domain.stub');
 
-        $insertPoint = strpos($this->stub, '/* Module Routes */') + 21;
+        $insertPoint = strpos($this->stub, '/* Domain Routes */') + 21;
 
         $this->stub = substr_replace($this->stub, $newModule, $insertPoint, 0);
     }

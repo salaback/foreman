@@ -11,7 +11,7 @@ class ControllerLocationTest extends TestCase
     {
         $location = new ControllerLocation('Test');
 
-        $this->assertSame(base_path('src/Http/Controllers/TestController.php'), $location->run());
+        $this->assertSame(base_path('app/Http/Controllers/TestController.php'), $location->run());
 
     }
 
@@ -19,7 +19,7 @@ class ControllerLocationTest extends TestCase
     {
         $location = new ControllerLocation(model:'Test', namespace: 'Test\Namespace');
 
-        $this->assertSame(base_path('src/Http/Controllers/Test/Namespace/TestController.php'), $location->run());
+        $this->assertSame(base_path('app/Http/Controllers/Test/Namespace/TestController.php'), $location->run());
 
     }
 
@@ -27,7 +27,7 @@ class ControllerLocationTest extends TestCase
     {
         $location = new ControllerLocation(model:'Test', domain: 'TestDomain');
 
-        $this->assertSame(base_path('src/TestDomain/Http/Controllers/TestController.php'), $location->run());
+        $this->assertSame(base_path('app/TestDomain/Http/Controllers/TestController.php'), $location->run());
 
     }
 }

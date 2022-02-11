@@ -55,6 +55,8 @@ class FactoryGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 

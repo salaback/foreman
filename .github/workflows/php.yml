@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Setup PHP with Xdebug
       uses: shivammathur/setup-php@v2
       with:
@@ -39,8 +39,8 @@ jobs:
     # Docs: https://getcomposer.org/doc/articles/scripts.md
 
     - name: Run test suite
-      run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
-      
+      run: ./vendor/bin/phpunit --coverage-clover=coverage.xml --verbose
+
     - name: Sourcetoad - PHPUnit Code Coverage
       # You may pin to the exact commit or the version.
       # uses: sourcetoad/phpunit-coverage-action@124e6a1d6cd23449708bfc45c5cf7991629fd339

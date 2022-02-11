@@ -11,7 +11,7 @@ class ModelLocationTest extends TestCase
     {
         $location = new ModelLocation('Test');
 
-        $this->assertSame(base_path('src/Models/Test.php'), $location->run());
+        $this->assertSame(base_path('app/Models/Test.php'), $location->run());
 
     }
 
@@ -19,7 +19,7 @@ class ModelLocationTest extends TestCase
     {
         $location = new ModelLocation(model:'Test', namespace: 'Test\Namespace');
 
-        $this->assertSame(base_path('src/Models/Test/Namespace/Test.php'), $location->run());
+        $this->assertSame(base_path('app/Models/Test/Namespace/Test.php'), $location->run());
 
     }
 
@@ -27,7 +27,7 @@ class ModelLocationTest extends TestCase
     {
         $location = new ModelLocation(model:'Test', domain: 'TestDomain');
 
-        $this->assertSame(base_path('src/TestDomain/Models/Test.php'), $location->run());
+        $this->assertSame(base_path('app/TestDomain/Models/Test.php'), $location->run());
 
     }
 }

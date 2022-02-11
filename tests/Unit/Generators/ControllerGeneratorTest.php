@@ -21,7 +21,7 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -34,12 +34,12 @@ class ControllerGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}Controller.php");
         $namespace = "Test\Test";
 
-        config(['generators' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
+        config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace);
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Controllers\Test\Test;",
@@ -63,7 +63,7 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace);
 
         $this->assertStringContainsString(
             "* Return an array of Tests",
@@ -78,25 +78,6 @@ class ControllerGeneratorTest extends TestCase
         $this->deleteFile($location);
     }
 
-    public function test_withModule()
-    {
-        $model = "Test";
-        $location = base_path("tests/scratch/test.php");
-        $namespace = "Test\Test";
-
-        $this->deleteFile($location);
-        $this->assertFileDoesNotExist($location);
-
-        Foreman::controller($location, $model, $namespace, 'test');
-
-        $this->assertStringContainsString(
-            "->through(config('test.filters.index'))",
-            $this->openFile($location)
-        );
-
-        $this->deleteFile($location);
-    }
-
     public function test_allBracesFulfilled()
     {
         $model = Str::studly($this->faker->word);
@@ -105,7 +86,7 @@ class ControllerGeneratorTest extends TestCase
 
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace, 'test');
+        Foreman::controller($location, $model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

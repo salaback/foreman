@@ -31,9 +31,9 @@ class Generators
      * @param string $namespace
      * @param string $module
      */
-    public function controller(string $location, string $model, string $namespace, string $module): void
+    public function controller(string $location, string $model, string $namespace): void
     {
-        $generator = new ControllerGenerator($location, $model, $namespace, $module);
+        $generator = new ControllerGenerator($location, $model, $namespace);
         $generator->execute();
     }
 

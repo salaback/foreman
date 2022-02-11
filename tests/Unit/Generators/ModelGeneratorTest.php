@@ -14,9 +14,11 @@ class ModelGeneratorTest extends TestCase
 
     public function test_generatesModelFile()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}.php");
+        $model = 'Test';
+        $location = base_path("tests/scratch/test.php");
         $namespace = "Test\Test";
+
+        $this->deleteFile($location);
 
         $this->assertFileDoesNotExist($location);
 
@@ -29,11 +31,11 @@ class ModelGeneratorTest extends TestCase
 
     public function test_with2LevelNamespace()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}.php");
+        $model = 'Test';
+        $location = base_path("tests/scratch/test.php");
         $namespace = "Test\Test";
 
-        config(['generators' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
+        config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->assertFileDoesNotExist($location);
 
@@ -45,7 +47,7 @@ class ModelGeneratorTest extends TestCase
         );
 
         $this->assertStringContainsString(
-            "use Intellicoreltd\Package\Database\Factories\\${model}Factory;",
+            "use Intellicoreltd\Package\Database\Factories\\TestFactory;",
             $this->openFile($location)
         );
 

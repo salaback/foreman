@@ -34,7 +34,7 @@ class RequestGeneratorTest extends TestCase
         $location = base_path("tests/scratch/CreateTestRequest.php");
         $namespace = "Test\Test";
 
-        config(['generators' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
+        config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
@@ -70,10 +70,11 @@ class RequestGeneratorTest extends TestCase
 
     public function test_allBracesFulfilled()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}.php");
+        $model = 'Test';
+        $location = base_path("tests/scratch/Test.php");
         $namespace = "Test\Test";
 
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
         Foreman::requests($location, $model, $namespace, 'create');

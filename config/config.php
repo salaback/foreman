@@ -1,7 +1,8 @@
 <?php
 
 return [
-    "base-namespace" => 'Intellicoreltd\Package',
+    "base-namespace" => 'App',
+    "wrapper" => "app",
     "locations" => [
         "model" => "Models",
         "controller" => "Http/Controllers",
@@ -10,6 +11,5 @@ return [
         "request" => "Http/Requests",
         "resource" => "Http/Resources",
         "routes" => "routes"
-    ],
-    "wrapper" => "src"
+    ]
 ];

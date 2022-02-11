@@ -11,7 +11,7 @@ class RequestLocationTest extends TestCase
     {
         $location = new RequestLocation(model: 'Test', type: 'Create');
 
-        $this->assertSame(base_path('src/Http/Requests/CreateTestRequest.php'), $location->run());
+        $this->assertSame(base_path('app/Http/Requests/CreateTestRequest.php'), $location->run());
 
     }
 
@@ -19,7 +19,7 @@ class RequestLocationTest extends TestCase
     {
         $location = new RequestLocation(model: 'Test', type: 'Create', namespace: 'Test\Namespace');
 
-        $this->assertSame(base_path('src/Http/Requests/Test/Namespace/CreateTestRequest.php'), $location->run());
+        $this->assertSame(base_path('app/Http/Requests/Test/Namespace/CreateTestRequest.php'), $location->run());
 
     }
 
@@ -27,7 +27,7 @@ class RequestLocationTest extends TestCase
     {
         $location = new RequestLocation(model: 'Test', type: 'Create', domain: 'TestDomain');
 
-        $this->assertSame(base_path('src/TestDomain/Http/Requests/CreateTestRequest.php'), $location->run());
+        $this->assertSame(base_path('app/TestDomain/Http/Requests/CreateTestRequest.php'), $location->run());
 
     }
 }

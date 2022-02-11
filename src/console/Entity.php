@@ -8,23 +8,23 @@ use Alablaster\Foreman\Facades\Foreman;
 
 class Entity extends Command
 {
-    protected $signature = 'foreman:entity {model} {--N|namespace} {--M|module}';
+    protected $signature = 'foreman:entity {model} {--N|namespace} {--D|domain}';
 
     protected $description = 'Create an entity';
 
     public function handle()
     {
-
         $model = Str::studly(Str::singular($this->argument('model')));
-        $module = $this->option('module') ? Str::kebab($this->option('module')) : Str::kebab($model);
         $namespace = $this->option('namespace');
+        $domain = $this->option('domain');
+
 
         $this->info('Generating ' . $model . ' entity');
 
         Artisan::call('foreman:controller', [
             'model' => $model,
             '-N' => $namespace,
-            '-M' => $module
+            '-D' => $domain
         ]);
 
         Artisan::call('foreman:factory', [
@@ -38,23 +38,26 @@ class Entity extends Command
 
         Artisan::call('foreman:model', [
             'model' => $model,
-            '-N' => $namespace
+            '-N' => $namespace,
+            '-D' => $domain
         ]);
 
         Artisan::call('foreman:requests', [
             'model' => $model,
-            '-N' => $namespace
+            '-N' => $namespace,
+            '-D' => $domain
         ]);
 
         Artisan::call('foreman:resource', [
             'model' => $model,
-            '-N' => $namespace
+            '-N' => $namespace,
+            '-D' => $domain
         ]);
 
         Artisan::call('foreman:route', [
             'model' => $model,
             '-N' => $namespace,
-            '-M' => $module
+            '-D' => $domain
         ]);
 
         $this->info('Entity generated');

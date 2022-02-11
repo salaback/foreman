@@ -11,7 +11,7 @@ class ResourceLocationTest extends TestCase
     {
         $location = new ResourceLocation(model: 'Test', type: 'Resource');
 
-        $this->assertSame(base_path('src/Http/Resources/TestResource.php'), $location->run());
+        $this->assertSame(base_path('app/Http/Resources/TestResource.php'), $location->run());
 
     }
 
@@ -19,7 +19,7 @@ class ResourceLocationTest extends TestCase
     {
         $location = new ResourceLocation(model: 'Test', type: 'Resource', namespace: 'Test\Namespace');
 
-        $this->assertSame(base_path('src/Http/Resources/Test/Namespace/TestResource.php'), $location->run());
+        $this->assertSame(base_path('app/Http/Resources/Test/Namespace/TestResource.php'), $location->run());
 
     }
 
@@ -27,7 +27,7 @@ class ResourceLocationTest extends TestCase
     {
         $location = new ResourceLocation(model: 'Test', type: 'Resource', domain: 'TestDomain');
 
-        $this->assertSame(base_path('src/TestDomain/Http/Resources/TestResource.php'), $location->run());
+        $this->assertSame(base_path('app/TestDomain/Http/Resources/TestResource.php'), $location->run());
 
     }
 }
