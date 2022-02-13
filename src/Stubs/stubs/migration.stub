@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class Create{{ model.studly.plural }}Table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('{{ model.snake.plural }}', function (Blueprint $table) {
+            $table->uuid('id')->unique();
+            // TODO: Add data fields
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('{{ model.snake.plural }}');
+    }
+}

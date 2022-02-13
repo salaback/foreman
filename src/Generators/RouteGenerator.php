@@ -4,26 +4,37 @@ namespace Alablaster\Foreman\Generators;
 
 use Alablaster\Foreman\Exceptions\MissingHydrationProperty;
 use Alablaster\Foreman\Exceptions\MissingStubException;
+use Alablaster\Foreman\Facades\Location;
+use Alablaster\Foreman\Locations\RouteLocation;
+use Alablaster\Foreman\Stubs\Stub;
+use Alablaster\Foreman\Stubs\StubType;
+use Alablaster\Foreman\Traits\InteractsWithFilesTrait;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use function PHPUnit\Framework\stringContains;
 
 class RouteGenerator extends Generator
 {
-    public function __construct(string $location, string $model, string $namespace, string $domain)
-    {
-        $stubPath = __DIR__ . '/stubs/routes.stub';
-        $properties = [
-            'model' => $model,
-            'namespace' => $namespace,
-            'domain'=> $domain
-        ];
 
+    use InteractsWithFilesTrait;
+
+    public function __construct(
+        string $model,
+        ?string $namespace = null,
+        ?string $domain = null)
+    {
         parent::__construct(
-            location: $location,
-            stubPath: $stubPath,
-            properties: $properties
+            model: $model,
+            namespace: $namespace,
+            domain: $domain,
         );
+    }
+
+    public function execute(): void
+    {
+        $stub = new Stub($this->getStubType(), $this->getProperties());
+
+        $this->saveFile($this->getLocation(), $stub->get());
     }
 
     protected function loadStub(): void
@@ -71,5 +82,15 @@ class RouteGenerator extends Generator
         $insertPoint = strpos($this->stub, '/* Domain Routes */') + 21;
 
         $this->stub = substr_replace($this->stub, $newModule, $insertPoint, 0);
+    }
+
+    protected function getStubType(): StubType
+    {
+        return StubType::Routes;
+    }
+
+    protected function getLocation(): string
+    {
+        return Location::route($this->model, $this->namespace, $this->domain);
     }
 }

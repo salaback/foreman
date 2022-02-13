@@ -2,20 +2,27 @@
 
 namespace Alablaster\Foreman\Generators;
 
+use Alablaster\Foreman\Facades\Location;
+use Alablaster\Foreman\Locations\FactoryLocation;
+use Alablaster\Foreman\Stubs\StubType;
+
 class FactoryGenerator extends Generator
 {
-    public function __construct(string $location, string $model, string $namespace)
+    public function __construct(?string $model = null, ?string $namespace = null)
     {
-        $stubPath = __DIR__ . '/stubs/factory.stub';
-        $properties = [
-            'model' => $model,
-            'namespace' => $namespace,
-        ];
-
         parent::__construct(
-            location: $location,
-            stubPath: $stubPath,
-            properties: $properties
+            model: $model,
+            namespace: $namespace,
         );
+    }
+
+    protected function getStubType(): StubType
+    {
+        return StubType::Factory;
+    }
+
+    protected function getLocation(): string
+    {
+        return Location::factory($this->model, $this->namespace);
     }
 }

@@ -2,19 +2,25 @@
 
 namespace Alablaster\Foreman\Generators;
 
+use Alablaster\Foreman\Facades\Location;
+use Alablaster\Foreman\Stubs\StubType;
+
 class MigrationGenerator extends Generator
 {
-    public function __construct(string $location, string $model)
+    public function __construct(?string $model = null)
     {
-        $stubPath = __DIR__ . '/stubs/migration.stub';
-        $properties = [
-            'model' => $model,
-        ];
-
         parent::__construct(
-            location: $location,
-            stubPath: $stubPath,
-            properties: $properties
+            model: $model,
         );
+    }
+
+    protected function getStubType(): StubType
+    {
+        return StubType::Migration;
+    }
+
+    protected function getLocation(): string
+    {
+        return Location::migration($this->model);
     }
 }

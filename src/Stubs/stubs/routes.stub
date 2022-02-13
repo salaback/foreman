@@ -1,0 +1,14 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use {{ baseNamespace }}\Http\Controllers{{ namespace.leadingBackSlash }}\{{ model.studly.singular }}Controller;
+
+/* Domain Routes */
+
+Route::prefix('api/v1/{{ domain }}')->middleware(['bindings'])->group(function() {
+    Route::apiResources([
+        /* {{ domain.title }} Resource Controllers */
+        '/{{ model.singular.kebab }}' => {{ model.studly.singular }}Controller::class,
+        /* End {{ domain.title }} Resource Controllers */
+    ]);
+});

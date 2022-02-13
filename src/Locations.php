@@ -19,7 +19,7 @@ class Locations
      * @param string|null $domain
      * @return string
      */
-    public function model(string $model, string $namespace, ?string $domain): string
+    public function model(string $model, ?string $namespace = null, ?string $domain = null): string
     {
         $location = new ModelLocation($model, $namespace, $domain);
 
@@ -33,9 +33,9 @@ class Locations
      * @param string|null $module
      * @return string
      */
-    public function controller(string $model, ?string $namespace, ?string $domain, ?string $module): string
+    public function controller(string $model, ?string $namespace = null, ?string $domain = null): string
     {
-        $location = new ControllerLocation($model, $namespace, $domain, $module);
+        $location = new ControllerLocation($model, $namespace, $domain);
         return $location->run();
     }
 
@@ -54,7 +54,7 @@ class Locations
      * @param string $namespace
      * @return string
      */
-    public function factory(string $model, string $namespace): string
+    public function factory(string $model, ?string $namespace = null): string
     {
         $location = new FactoryLocation($model, $namespace);
         return $location->run();
@@ -78,7 +78,7 @@ class Locations
      * @param string|null $domain
      * @return string
      */
-    public function request(string $model, string $type, ?string $namespace, ?string $domain): string
+    public function request(string $model, string $type, ?string $namespace = null, ?string $domain = null): string
     {
         $location = new RequestLocation($model, $type, $namespace, $domain);
         return $location->run();
@@ -91,7 +91,7 @@ class Locations
      * @param string|null $domain
      * @return string
      */
-    public function resource(string $model, string $type, ?string $namespace, ?string $domain): string
+    public function resource(string $model, string $type, ?string $namespace = null, ?string $domain = null): string
     {
         $location = new ResourceLocation($model, $type, $namespace, $domain);
         return $location->run();

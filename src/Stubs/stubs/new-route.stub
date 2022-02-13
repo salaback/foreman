@@ -1,0 +1,1 @@
+'/{{ model.singular.kebab }}' => {{ model.studly.singular }}Controller::class,

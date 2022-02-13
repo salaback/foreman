@@ -2,6 +2,7 @@
 
 namespace Alablaster\Foreman\Tests;
 
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Alablaster\Foreman\Facades\Foreman;
@@ -18,9 +19,13 @@ class MigrationGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $this->deleteFile($location);
 
+        Location::shouldReceive('migration')
+            ->with($model)
+            ->andReturn($location);
+
         $this->assertFileDoesNotExist($location);
 
-        Foreman::migration($location, $model);
+        Foreman::migration($model);
 
         $this->assertFileExists($location);
 
@@ -32,10 +37,14 @@ class MigrationGeneratorTest extends TestCase
         $model = "Test";
         $location = base_path("tests/scratch/${model}.php");
 
+        Location::shouldReceive('migration')
+            ->with($model)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::migration($location, $model);
+        Foreman::migration($model);
 
         $this->assertStringContainsString(
             "class CreateTestsTable extends Migration",
@@ -54,12 +63,15 @@ class MigrationGeneratorTest extends TestCase
     {
         $model = Str::studly($this->faker->word);
         $location = base_path("tests/scratch/${model}.php");
-        $namespace = "Test\Test";
+
+        Location::shouldReceive('migration')
+            ->with($model)
+            ->andReturn($location);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::model($location, $model, $namespace);
+        Foreman::migration($model);
 
         $this->assertStringNotContainsString(
             "{{",

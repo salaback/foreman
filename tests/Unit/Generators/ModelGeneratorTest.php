@@ -2,6 +2,7 @@
 
 namespace Alablaster\Foreman\Tests;
 
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Alablaster\Foreman\Facades\Foreman;
@@ -16,13 +17,17 @@ class ModelGeneratorTest extends TestCase
     {
         $model = 'Test';
         $location = base_path("tests/scratch/test.php");
-        $namespace = "Test\Test";
+        $namespace = 'Test\Test';
+
+        Location::shouldReceive('model')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
 
         $this->deleteFile($location);
 
         $this->assertFileDoesNotExist($location);
 
-        Foreman::model($location, $model, $namespace);
+        Foreman::model($model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -35,11 +40,15 @@ class ModelGeneratorTest extends TestCase
         $location = base_path("tests/scratch/test.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('model')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
+
         config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->assertFileDoesNotExist($location);
 
-        Foreman::model($location, $model, $namespace);
+        Foreman::model($model, $namespace);
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Models\Test\Test;",
@@ -56,13 +65,18 @@ class ModelGeneratorTest extends TestCase
 
     public function test_withModelName()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}.php");
+        $model = 'Test';
+        $location = base_path("tests/scratch/test.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('model')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
+
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::model($location, $model, $namespace);
+        Foreman::model($model, $namespace);
 
         $this->assertStringContainsString(
             "class ${model} extends Model",
@@ -83,10 +97,14 @@ class ModelGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('model')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::model($location, $model, $namespace);
+        Foreman::model($model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

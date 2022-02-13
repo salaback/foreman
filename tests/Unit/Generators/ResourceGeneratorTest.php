@@ -2,6 +2,7 @@
 
 namespace Alablaster\Foreman\Tests;
 
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Alablaster\Foreman\Facades\Foreman;
@@ -18,10 +19,14 @@ class ResourceGeneratorTest extends TestCase
         $location = base_path("tests/scratch/Test.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('resource')
+            ->with($model, 'Resource', $namespace, null)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::resource($location, $model, $namespace);
+        Foreman::resource($model, 'Resource', $namespace);
 
         $this->assertFileExists($location);
 
@@ -34,12 +39,16 @@ class ResourceGeneratorTest extends TestCase
         $location = base_path("tests/scratch/Test.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('resource')
+            ->with($model, 'Resource', $namespace, null)
+            ->andReturn($location);
+
         config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::resource($location, $model, $namespace, 'test');
+        Foreman::resource($model, 'Resource', $namespace);
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Resources\Test\Test;",
@@ -55,10 +64,14 @@ class ResourceGeneratorTest extends TestCase
         $location = base_path("tests/scratch/test.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('resource')
+            ->with($model, 'Resource', $namespace, null)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::resource($location, $model, $namespace, 'test');
+        Foreman::resource($model, 'Resource', $namespace);
 
         $this->assertStringContainsString(
             '"@type" => "TestModel"',
@@ -79,9 +92,13 @@ class ResourceGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('resource')
+            ->with($model, 'Resource', $namespace, null)
+            ->andReturn($location);
+
         $this->assertFileDoesNotExist($location);
 
-        Foreman::resource($location, $model, $namespace);
+        Foreman::resource($model, 'Resource', $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

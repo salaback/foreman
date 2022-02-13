@@ -5,14 +5,14 @@ namespace Alablaster\Foreman\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- *  @method static void migration(string $location, string $model)
- *  @method static void model(string $location, string $model, string $namespace)
- *  @method static void factory(string $location, string $model, string $namespace)
- *  @method static void controller(string $location, string $model, string $namespace)
- *  @method static void routes(string $location, string $model, string $namespace, string $domain)
- *  @method static void requests(string $location, string $model, string $namespace, string $type)
- *  @method static void resource(string $location, string $model, string $namespace)
- *  @method static void collection(string $location, string $model, string $namespace)
+ *  @method static void migration(string $model)
+ *  @method static void model(string $model, ?string $namespace = null)
+ *  @method static void factory(string $model, ?string $namespace = null)
+ *  @method static void controller(string $model, ?string $namespace = null)
+ *  @method static void route(string $model, ?string $namespace = null, ?string $domain = null)
+ *  @method static void requests(string $model, string $type, ?string $namespace = null, ?string $domain = null)
+ *  @method static void resource(string $model, string $type, ?string $namespace = null, ?string $domain = null)
+ *  @method static void collection(string $model, ?string $namespace = null)
 
  */
 

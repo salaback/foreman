@@ -1,0 +1,19 @@
+<?php
+
+namespace {{ baseNamespace }}\Models\{{ namespace }};
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Intellicoreltd\Headlessbps\BaseClasses\Model;
+use {{ baseNamespace }}\Database\Factories\{{ model.studly }}Factory;
+
+class {{ model.studly }} extends Model
+{
+    use HasFactory;
+
+    protected $guarded = ['id'];
+
+    protected static function newFactory(): {{ model.studly }}Factory
+    {
+        return {{ model.studly }}Factory::new();
+    }
+}

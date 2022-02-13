@@ -2,6 +2,7 @@
 
 namespace Alablaster\Foreman\Tests;
 
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Alablaster\Foreman\Facades\Foreman;
@@ -14,14 +15,18 @@ class ControllerGeneratorTest extends TestCase
 
     public function test_generatesModelFile()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}Controller.php");
+        $model = 'Test';
         $namespace = "Test\Test";
+        $location = base_path('scratch/test.php');
+
+        Location::shouldReceive('controller')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace);
+        Foreman::controller($model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -30,16 +35,20 @@ class ControllerGeneratorTest extends TestCase
 
     public function test_with2LevelNamespace()
     {
-        $model = Str::studly($this->faker->word);
-        $location = base_path("tests/scratch/${model}Controller.php");
+        $model = "Test";
+        $location = base_path("tests/scratch/TestController.php");
         $namespace = "Test\Test";
+
+        Location::shouldReceive('controller')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
 
         config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace);
+        Foreman::controller($model, $namespace);
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Controllers\Test\Test;",
@@ -60,10 +69,14 @@ class ControllerGeneratorTest extends TestCase
         $location = base_path("tests/scratch/test.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('controller')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace);
+        Foreman::controller($model, $namespace);
 
         $this->assertStringContainsString(
             "* Return an array of Tests",
@@ -84,9 +97,13 @@ class ControllerGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('controller')
+            ->with($model, $namespace, null)
+            ->andReturn($location);
+
         $this->assertFileDoesNotExist($location);
 
-        Foreman::controller($location, $model, $namespace);
+        Foreman::controller($model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

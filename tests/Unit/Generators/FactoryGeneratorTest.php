@@ -2,6 +2,7 @@
 
 namespace Alablaster\Foreman\Tests;
 
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Alablaster\Foreman\Facades\Foreman;
@@ -18,10 +19,14 @@ class FactoryGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('factory')
+            ->with($model, $namespace)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::factory($location, $model, $namespace);
+        Foreman::factory($model, $namespace);
 
         $this->assertFileExists($location);
 
@@ -34,12 +39,16 @@ class FactoryGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('factory')
+            ->with($model, $namespace)
+            ->andReturn($location);
+
         config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::factory($location, $model, $namespace);
+        Foreman::factory($model, $namespace);
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Database\Factories\Test\Test;",
@@ -55,12 +64,16 @@ class FactoryGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('factory')
+            ->with($model, $namespace)
+            ->andReturn($location);
+
         config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::factory($location, $model, $namespace);
+        Foreman::factory($model, $namespace);
 
         $this->assertStringContainsString(
             "class TestFactory extends Factory",
@@ -81,9 +94,14 @@ class FactoryGeneratorTest extends TestCase
         $location = base_path("tests/scratch/${model}.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('factory')
+            ->with($model, $namespace)
+            ->andReturn($location);
+
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::factory($location, $model, $namespace);
+        Foreman::factory($model, $namespace);
 
         $this->assertStringNotContainsString(
             "{{",

@@ -1,0 +1,24 @@
+<?php
+
+namespace {{ baseNamespace }}\Database\Factories{{ namespace.leadingBackSlash }};
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use {{ baseNamespace }}\Models\{{ namespace.trailingBackSlash }}{{ model.studly }};
+
+class {{ model.studly.singular}}Factory extends Factory
+{
+
+    protected $model = {{ model.studly.singular }}::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+           // TODO: Add properties to factory
+        ];
+    }
+}

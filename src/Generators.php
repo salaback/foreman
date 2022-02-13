@@ -15,45 +15,65 @@ use Alablaster\Foreman\Generators\RouteGenerator;
 class Generators
 {
     /**
-     * @param string $location
      * @param string $model
      * @param string $namespace
      */
-    public function model(string $location, string $model, string $namespace): void
+    public function model(string $model, string $namespace): void
     {
-        $generator = new ModelGenerator($location, $model, $namespace);
+        $generator = new ModelGenerator($model, $namespace);
         $generator->execute();
     }
 
     /**
-     * @param string $location
      * @param string $model
      * @param string $namespace
      * @param string $module
      */
-    public function controller(string $location, string $model, string $namespace): void
+    public function controller(string $model, string $namespace): void
     {
-        $generator = new ControllerGenerator($location, $model, $namespace);
+        $generator = new ControllerGenerator($model, $namespace);
         $generator->execute();
     }
 
     /**
-     * @param string $location
      * @param string $model
      */
-    public function migration(string $location, string $model): void
+    public function migration(string $model): void
     {
-        $generator = new MigrationGenerator($location, $model);
+        $generator = new MigrationGenerator($model);
         $generator->execute();
     }
 
     /**
-     * @param string $location
      * @param string $model
+     * @param string $namespace
      */
-    public function factory(string $location, string $model, string $namespace): void
+    public function factory(string $model, string $namespace): void
     {
-        $generator = new FactoryGenerator($location, $model, $namespace);
+        $generator = new FactoryGenerator($model, $namespace);
+        $generator->execute();
+    }
+
+    /**
+     * @param string $model
+     * @param string $namespace
+     * @param string $domain
+     */
+    public function route(string $model, ?string $namespace = null, ?string $domain = null): void
+    {
+        $generator = new RouteGenerator($model, $namespace, $domain);
+        $generator->execute();
+    }
+
+    /**
+     * @param string $model
+     * @param string|null $namespace
+     * @param string $type
+     * @param string|null $domain
+     */
+    public function requests(string $model, string $type, ?string $namespace = null, ?string $domain = null): void
+    {
+        $generator = new RequestsGenerator($model, $type, $namespace, $domain);
         $generator->execute();
     }
 
@@ -63,33 +83,9 @@ class Generators
      * @param string $namespace
      * @param $module
      */
-    public function route(string $location, string $model, string $namespace, string $module): void
+    public function resource(string $model, string $type, ?string $namespace  = null, ?string $domain = null): void
     {
-        $generator = new RouteGenerator($location, $model, $namespace, $module);
-        $generator->execute();
-    }
-
-    /**
-     * @param string $location
-     * @param string $model
-     * @param string $namespace
-     * @param $module
-     */
-    public function requests(string $location, string $model, string $namespace, string $type): void
-    {
-        $generator = new RequestsGenerator($location, $model, $namespace, $type);
-        $generator->execute();
-    }
-
-    /**
-     * @param string $location
-     * @param string $model
-     * @param string $namespace
-     * @param $module
-     */
-    public function resource(string $location, string $model, string $namespace): void
-    {
-        $generator = new ResourceGenerator($location, $model, $namespace);
+        $generator = new ResourceGenerator($model, $type, $namespace, $domain);
         $generator->execute();
     }
 

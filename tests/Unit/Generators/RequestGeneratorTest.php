@@ -2,6 +2,7 @@
 
 namespace Alablaster\Foreman\Tests;
 
+use Alablaster\Foreman\Facades\Location;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Alablaster\Foreman\Facades\Foreman;
@@ -18,10 +19,14 @@ class RequestGeneratorTest extends TestCase
         $location = base_path("tests/scratch/CreateTestRequest.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('request')
+            ->with($model, $namespace, 'create', null)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::requests($location, $model, $namespace, 'create');
+        Foreman::requests($model, $namespace, 'create', null);
 
         $this->assertFileExists($location);
 
@@ -34,12 +39,16 @@ class RequestGeneratorTest extends TestCase
         $location = base_path("tests/scratch/CreateTestRequest.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('request')
+            ->with($model, 'create', $namespace, null)
+            ->andReturn($location);
+
         config(['foreman' => [ 'base-namespace' => 'Intellicoreltd\Package']]);
 
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::requests($location, $model, $namespace, 'create');
+        Foreman::requests($model, 'create', $namespace,null);
 
         $this->assertStringContainsString(
             "namespace Intellicoreltd\Package\Http\Requests\Test\Test;",
@@ -55,10 +64,14 @@ class RequestGeneratorTest extends TestCase
         $location = base_path("tests/scratch/CreateTestRequest.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('request')
+            ->with($model, 'create', $namespace, null)
+            ->andReturn($location);
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::requests($location, $model, $namespace, 'create');
+        Foreman::requests($model, 'create', $namespace);
 
         $this->assertStringContainsString(
             "class CreateTestRequest extends FormRequest",
@@ -74,10 +87,15 @@ class RequestGeneratorTest extends TestCase
         $location = base_path("tests/scratch/Test.php");
         $namespace = "Test\Test";
 
+        Location::shouldReceive('request')
+            ->with($model, 'create', $namespace, null)
+            ->andReturn($location);
+
+
         $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
-        Foreman::requests($location, $model, $namespace, 'create');
+        Foreman::requests($model, 'create', $namespace);
 
         $this->assertStringNotContainsString(
             "{{",
