@@ -24,7 +24,7 @@ Namespaces should be defined in studly case with for slashes.
 
 The following commands and arguments are supported by Foreman. To generate a full entity run the following command:
 
-``$ php artisan foreman:entity Model -N=Namespace --D=Domain``
+``$ php artisan foreman:entity Model --N=Path\To\Namespace --D=Domain``
 
 | command  |arguments |options |Notes |
 |---|---|---|---|
@@ -36,5 +36,14 @@ The following commands and arguments are supported by Foreman. To generate a ful
 | foreman:requests | model | <u>N</u>amespace, <u>D</u>omain | Generates both a Create and Update request class.|
 | foreman:route | model | <u>N</u>amespace, <u>D</u>omain| Can be run multiple times to add more routes to the routes file. |
 
+## Customization
 
+After publishing the vendor files will generate a `stubs` directory in the 
+base of the project.  These templates can be modified to and used to
+generate files using the Foreman commands.
 
+In the template, passed variables can be accessed using a mustache like
+sintax, for example `{{ model }}`.  Variables can be modified using a variety 
+of filters through a dot notation, for example {{ model.lowercase.plural }}.
+This includes all of Laravel's Str class helpers.  Additionally, it includes
+`leadingBackSlash`, `trailingForwardSlash`, `trailingDot`, 

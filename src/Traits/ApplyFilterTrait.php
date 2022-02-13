@@ -25,6 +25,8 @@ trait ApplyFilterTrait
                 return $string ? $string . '/' : null;
             case 'trailingDot':
                 return $string ? $string . '.' : null;
+            case 'leadingDot':
+                return $string ? '.' . $string : null;
             case 'dot':
                 return $string ? $this->dot($string) : null;
             default:

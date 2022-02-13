@@ -40,5 +40,13 @@ class ForemanServiceProvider extends ServiceProvider
             Resource::class,
             Entity::class
         ]);
+
+        $this->publishes([
+            __DIR__.'/Stubs/stubs/' => base_path('/stubs/'),
+        ]);
+
+        $this->publishes([
+            __DIR__.'./../config/config.php' => config_path('/foreman.php'),
+        ]);
     }
 }
