@@ -96,6 +96,7 @@ class ResourceGeneratorTest extends TestCase
             ->with($model, 'Resource', $namespace, null)
             ->andReturn($location);
 
+        $this->deleteFile($location);
         $this->assertFileDoesNotExist($location);
 
         Foreman::resource($model, 'Resource', $namespace);
