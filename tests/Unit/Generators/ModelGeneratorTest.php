@@ -24,13 +24,11 @@ class ModelGeneratorTest extends TestCase
             ->andReturn($location);
 
         $this->deleteFile($location);
-
         $this->assertFileDoesNotExist($location);
 
         Foreman::model($model, $namespace);
 
         $this->assertFileExists($location);
-
         $this->deleteFile($location);
     }
 
