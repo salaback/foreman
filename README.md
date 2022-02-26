@@ -6,7 +6,7 @@ A generator utility for creating Laravel Projects
 
 ## Install
 
-To install the package in a Laravel Project or Package run the following command.
+To install the package in a Laravel Project run the following command.
 
 ``$ composer install alablaster/foreman``
 
